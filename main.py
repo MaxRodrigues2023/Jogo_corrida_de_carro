@@ -1,15 +1,13 @@
-
-import pygame
 import os
 import random
 import sys
 
-
-
+import pygame
 
 # Inicialização do Pygame e do mixer
 pygame.init()
 pygame.mixer.init()
+
 
 # Função para converter caminhos relativos em absolutos
 def resource_path(relative_path):
@@ -18,6 +16,7 @@ def resource_path(relative_path):
         return os.path.join(sys._MEIPASS, relative_path)
     # Executando no script Python
     return os.path.join(os.path.abspath("."), relative_path)
+
 
 # Configurações da tela
 LARGURA_TELA = 900
@@ -30,21 +29,22 @@ BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
 
 # Carregar assets
-carro_jogador_img = pygame.image.load(resource_path("assets/carro_jogador.png"))
-carro_contrario_1_img = pygame.image.load(resource_path("assets/carro_contrario_1.png"))
-carro_contrario_2_img = pygame.image.load(resource_path("assets/carro_contrario_2.png"))
-carro_contrario_3_img = pygame.image.load(resource_path("assets/carro_contrario_3.png"))
-carro_contrario_4_img = pygame.image.load(resource_path("assets/carro_contrario_4.png"))
-carro_contrario_5_img = pygame.image.load(resource_path("assets/carro_contrario_5.png"))
-carro_contrario_6_img = pygame.image.load(resource_path("assets/carro_contrario_6.png"))
-estrada_img = pygame.image.load(resource_path("assets/estrada.png"))
+carro_jogador_img = pygame.image.load(resource_path("asset/carro_jogador.png"))
+carro_contrario_1_img = pygame.image.load(resource_path("asset/carro_contrario_1.png"))
+carro_contrario_2_img = pygame.image.load(resource_path("asset/carro_contrario_2.png"))
+carro_contrario_3_img = pygame.image.load(resource_path("asset/carro_contrario_3.png"))
+carro_contrario_4_img = pygame.image.load(resource_path("asset/carro_contrario_4.png"))
+carro_contrario_5_img = pygame.image.load(resource_path("asset/carro_contrario_5.png"))
+carro_contrario_6_img = pygame.image.load(resource_path("asset/carro_contrario_6.png"))
+estrada_img = pygame.image.load(resource_path("asset/estrada.png"))
 
 # Carregar sons
-som_motor = pygame.mixer.Sound(resource_path("assets/motor.wav"))
-som_colisao = pygame.mixer.Sound(resource_path("assets/colisao.wav"))
+som_motor = pygame.mixer.Sound(resource_path("asset/motor.wav"))
+som_colisao = pygame.mixer.Sound(resource_path("asset/colisao.wav"))
 
 # Reproduzir som do motor em loop
 som_motor.play(-1)  # -1 faz o som repetir infinitamente
+
 
 # Classe do Carro do Jogador
 class CarroJogador(pygame.sprite.Sprite):
@@ -68,6 +68,7 @@ class CarroJogador(pygame.sprite.Sprite):
             self.rect.left = 0
         if self.rect.right > LARGURA_TELA:
             self.rect.right = LARGURA_TELA
+
 
 # Classe do Carro Contrário
 class CarroContrario(pygame.sprite.Sprite):
@@ -93,6 +94,7 @@ class CarroContrario(pygame.sprite.Sprite):
         if self.rect.top > ALTURA_TELA:
             self.kill()
 
+
 # Inicialização do jogo
 carro_jogador = CarroJogador()
 todas_sprites = pygame.sprite.Group()
@@ -106,11 +108,13 @@ pontuacao = 0
 fonte = pygame.font.Font(None, 36)
 relogio = pygame.time.Clock()
 
+
 # Função para criar carros contrários
 def criar_carro_contrario():
     carro = CarroContrario()
     carros_contrarios.add(carro)
     todas_sprites.add(carro)
+
 
 # Loop principal do jogo
 rodando = True
