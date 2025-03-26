@@ -8,6 +8,14 @@ pygame.init()
 pygame.mixer.init()
 
 
+def get_resource_path(relative_path):
+    # """ Retorna o caminho correto para o recurso, considerando a execução do .exe. """
+    base_path = os.path.dirname(sys.executable)  # Pasta onde o executável está rodando
+    return os.path.join(base_path, relative_path)
+
+
+img_path = get_resource_path("asset/carro_jogador.png")
+
 # Função para converter caminhos relativos em absolutos
 def resource_path(relative_path):
     if hasattr(sys, '_MEIPASS'):
@@ -29,7 +37,6 @@ VERMELHO = (255, 0, 0)
 VERDE = (0, 255, 0)
 AZUL = (0, 0, 255)
 
-# Carregar assets
 carro_jogador_img = pygame.image.load(resource_path("asset/carro_jogador.png"))
 carro_contrario_1_img = pygame.image.load(resource_path("asset/carro_contrario_1.png"))
 carro_contrario_2_img = pygame.image.load(resource_path("asset/carro_contrario_2.png"))
@@ -147,10 +154,10 @@ class MenuPausa:
     def __init__(self):
         self.fonte_titulo = pygame.font.Font(None, 72)
         self.botoes = [
-            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 - 80, 200, 50, "Continue", VERDE, (100, 255, 100),
+            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 - 80, 200, 50, "Continue", GREEN, (100, 255, 100),
                   "continue"),
-            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 - 10, 200, 50, "Menu", AZUL, (100, 100, 255), "menu"),
-            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 60, 200, 50, "Exit", VERMELHO, (255, 100, 100), "Exit")
+            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 - 10, 200, 50, "Menu", BLUE, (100, 100, 255), "menu"),
+            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 60, 200, 50, "Exit", RED, (255, 100, 100), "Exit")
         ]
 
     def desenhar(self, superficie):
