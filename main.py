@@ -35,7 +35,7 @@ PRETO = (0, 0, 0)
 CINZA = (100, 100, 100)
 VERMELHO = (255, 0, 0)
 VERDE = (0, 255, 0)
-AZUL = (0, 0, 255)
+LARANJA = (255, 165, 0)
 
 carro_jogador_img = pygame.image.load(resource_path("asset/carro_jogador.png"))
 carro_contrario_1_img = pygame.image.load(resource_path("asset/carro_contrario_1.png"))
@@ -258,7 +258,7 @@ class TelaGameOver:
         self.botoes = [
             Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2, 200, 50, "Play Again", VERDE, (100, 255, 100),
                   "Play"),
-            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 70, 200, 50, "Menu", AZUL, (100, 100, 255), "menu"),
+            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 70, 200, 50, "Menu", LARANJA, (100, 100, 255), "menu"),
             Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 140, 200, 50, "Exit", VERMELHO, (255, 100, 100), "Exit")
         ]
 
