@@ -30,12 +30,12 @@ tela = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
 pygame.display.set_caption("Car on the Road")
 
 # Cores
-BRANCO = (255, 255, 255)
-PRETO = (0, 0, 0)
-CINZA = (100, 100, 100)
-VERMELHO = (255, 0, 0)
-VERDE = (0, 255, 0)
-LARANJA = (255, 165, 0)
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GRAY = (100, 100, 100)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+ORANGE = (255, 165, 0)
 
 carro_jogador_img = pygame.image.load(resource_path("asset/carro_jogador.png"))
 carro_contrario_1_img = pygame.image.load(resource_path("asset/carro_contrario_1.png"))
@@ -107,9 +107,9 @@ class Botao:
         mouse_pos = pygame.mouse.get_pos()
         cor = self.cor_hover if self.rect.collidepoint(mouse_pos) else self.cor_normal
         pygame.draw.rect(superficie, cor, self.rect, border_radius=10)
-        pygame.draw.rect(superficie, PRETO, self.rect, 2, border_radius=10)
+        pygame.draw.rect(superficie, BLACK, self.rect, 2, border_radius=10)
 
-        texto_surf = self.fonte.render(self.texto, True, PRETO)
+        texto_surf = self.fonte.render(self.texto, True, BLACK)
         texto_rect = texto_surf.get_rect(center=self.rect.center)
         superficie.blit(texto_surf, texto_rect)
 
@@ -123,14 +123,14 @@ class MenuPrincipal:
     def __init__(self):
         self.fonte_titulo = pygame.font.Font(None, 72)
         self.botoes = [
-            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 - 50, 200, 50, "Play", VERDE, (100, 255, 100), "Play"),
-            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 20, 200, 50, "Exit", VERMELHO, (255, 100, 100), "Exit")
+            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 - 50, 200, 50, "Play", GREEN, (100, 255, 100), "Play"),
+            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 20, 200, 50, "Exit", RED, (255, 100, 100), "Exit")
         ]
 
     def desenhar(self, superficie):
-        superficie.fill(CINZA)
+        superficie.fill(GRAY)
 
-        titulo = self.fonte_titulo.render("Car on the Road", True, BRANCO)
+        titulo = self.fonte_titulo.render("Car on the Road", True, WHITE)
         titulo_rect = titulo.get_rect(center=(LARGURA_TELA // 2, ALTURA_TELA // 4))
         superficie.blit(titulo, titulo_rect)
 
@@ -165,7 +165,7 @@ class MenuPausa:
         s.fill((50, 50, 50, 128))
         superficie.blit(s, (0, 0))
 
-        titulo = self.fonte_titulo.render("Paused", True, BRANCO)
+        titulo = self.fonte_titulo.render("Paused", True, WHITE)
         titulo_rect = titulo.get_rect(center=(LARGURA_TELA // 2, ALTURA_TELA // 4))
         superficie.blit(titulo, titulo_rect)
 
@@ -237,7 +237,7 @@ class Jogo:
     def desenhar(self, superficie):
         superficie.blit(estrada_img, (0, 0))
         self.todas_sprites.draw(superficie)
-        texto_pontuacao = self.fonte.render(f"Score: {int(self.pontuacao)}", True, BRANCO)
+        texto_pontuacao = self.fonte.render(f"Score: {int(self.pontuacao)}", True, WHITE)
         superficie.blit(texto_pontuacao, (10, 10))
 
     def processar_eventos(self):
@@ -256,20 +256,20 @@ class TelaGameOver:
         self.fonte_titulo = pygame.font.Font(None, 72)
         self.fonte_pontuacao = pygame.font.Font(None, 48)
         self.botoes = [
-            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2, 200, 50, "Play Again", VERDE, (100, 255, 100),
+            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2, 200, 50, "Play Again", GREEN, (100, 255, 100),
                   "Play"),
-            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 70, 200, 50, "Menu", LARANJA, (100, 100, 255), "menu"),
-            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 140, 200, 50, "Exit", VERMELHO, (255, 100, 100), "Exit")
+            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 70, 200, 50, "Menu", ORANGE, (100, 100, 255), "menu"),
+            Botao(LARGURA_TELA // 2 - 100, ALTURA_TELA // 2 + 140, 200, 50, "Exit", RED, (255, 100, 100), "Exit")
         ]
 
     def desenhar(self, superficie):
-        superficie.fill(CINZA)
+        superficie.fill(GRAY)
 
-        titulo = self.fonte_titulo.render("Game Over", True, VERMELHO)
+        titulo = self.fonte_titulo.render("Game Over", True, RED)
         titulo_rect = titulo.get_rect(center=(LARGURA_TELA // 2, ALTURA_TELA // 4))
         superficie.blit(titulo, titulo_rect)
 
-        texto_pont = self.fonte_pontuacao.render(f"Score: {int(self.pontuacao)}", True, BRANCO)
+        texto_pont = self.fonte_pontuacao.render(f"Score: {int(self.pontuacao)}", True, WHITE)
         pont_rect = texto_pont.get_rect(center=(LARGURA_TELA // 2, ALTURA_TELA // 3))
         superficie.blit(texto_pont, pont_rect)
 
